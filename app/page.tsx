@@ -31,11 +31,11 @@ import {
   DialogClose,
 } from "../components/ui/dialog";
 import { isEqual } from "lodash";
-import { UploadCloud, XIcon } from "lucide-react";
+import { UploadCloud } from "lucide-react";
 
 // Define interfaces for better type safety
 interface JsonEntry {
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 interface FieldChanges {
@@ -330,7 +330,8 @@ export default function App() {
             setAfterJsonString(content);
             setFileNameAfter(file.name);
           }
-        } catch (readError) {
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        } catch (error) {
           // Handle errors during file reading.
           setError(`Error reading file ${file.name}.`);
           if (type === "before") setFileNameBefore("");
